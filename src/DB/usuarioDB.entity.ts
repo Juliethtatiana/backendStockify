@@ -1,8 +1,10 @@
 /* eslint-disable prettier/prettier */
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany } from 'typeorm';
+import { inventarioDB } from './inventarioDB.entity';
+import { VentaDB } from './ventaDB.entity';
 
 @Entity({name:'usuario'})
-export class UsuarioDB{
+export class usuarioDB{
   @PrimaryGeneratedColumn()
   idusuario: number;
 
@@ -20,5 +22,11 @@ export class UsuarioDB{
 
   @Column()
   role:string;
+
+  @OneToMany(() => inventarioDB, inventario => inventarioDB.creador)
+  inventarios: inventarioDB[];
+
+  @OneToMany(() => VentaDB, venta => VentaDB.vendedor)
+  venta: VentaDB[];
 
 }
