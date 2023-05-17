@@ -18,13 +18,13 @@ export class VentaDB{
   @Column({type: 'datetime'})
   fecha: Date;
 
-  @OneToMany(() => producto_has_ventaDB, venta => producto_has_ventaDB.venta)
+  @OneToMany(() => producto_has_ventaDB, venta => venta.venta)
   producto: producto_has_ventaDB[];
 
-  @ManyToOne(() =>clienteDB, cliente=>clienteDB.venta)
+  @ManyToOne(() =>clienteDB, cliente => cliente.venta)
     cliente: clienteDB;
 
-  @ManyToOne(() =>usuarioDB, usuario=>usuarioDB.venta)
+  @ManyToOne(() =>usuarioDB, usuario=>usuario.venta)
     vendedor: usuarioDB;
 
 }

@@ -23,10 +23,10 @@ export class usuarioDB{
   @Column()
   role:string;
 
-  @OneToMany(() => inventarioDB, inventario => inventarioDB.creador)
+  @OneToMany(() => inventarioDB, inventario => inventario.idinventario)
   inventarios: inventarioDB[];
 
-  @OneToMany(() => VentaDB, venta => VentaDB.vendedor)
+  @OneToMany(() => VentaDB, venta => venta.idventa)
   venta: VentaDB[];
 
 }

@@ -16,6 +16,6 @@ export class proveedorDB{
   @Column()
   telefonoProveedor: string;  
 
-  @OneToMany(() => ProductoDB, producto => ProductoDB.proveedor)
+  @OneToMany(() => ProductoDB, producto => producto.idproducto)
   producto: ProductoDB[];
 }

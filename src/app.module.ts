@@ -3,9 +3,8 @@ import { InventarioModule } from './inventario/inventario.module';
 import { VentaModule } from './venta/venta.module';
 import { ProductoModule } from './producto/producto.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { InventarioDB } from 'src/DB/inventarioDB.entity';
-import { UsuarioDB } from 'src/DB/usuarioDB.entity';
-import { InventarioModule } from './inventario/inventario.module';
+import { usuarioDB } from './DB/usuarioDB.entity';
+import { inventarioDB } from './DB/inventarioDB.entity';
 
 @Module({
   imports: [
@@ -15,9 +14,9 @@ import { InventarioModule } from './inventario/inventario.module';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: 'sub-zero00',
-      database: 'stockifyDB',
-      entities: [InventarioDB, UsuarioDB],
+      password: 'root',
+      database: 'stockifydb',
+      entities: [usuarioDB,inventarioDB],
     }),
     ProductoModule,
     VentaModule,

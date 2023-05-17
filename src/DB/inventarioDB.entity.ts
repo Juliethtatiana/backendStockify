@@ -14,12 +14,9 @@ export class inventarioDB{
   @Column()
   fechaCreacion:Date;
 
-  @Column
-  usuarioId: number;
-
-  @ManyToOne(() =>usuarioDB, usuario=>usuarioDB.inventarios)
+  @ManyToOne(() =>usuarioDB, usuario=>usuario.idusuario)
   creador: usuarioDB;
 
-  @OneToMany(() => inventario_has_productoDB, producto => inventario_has_productoDB.inventario)
+  @OneToMany(() => inventario_has_productoDB, producto => producto.idInvProd)
   producto: inventario_has_productoDB[];
 }

@@ -4,7 +4,7 @@ import { VentaDB } from './ventaDB.entity';
 
 @Entity({name:'cliente'})
 export class clienteDB{
-  @Column()
+  @PrimaryGeneratedColumn()
   idCliente: number;
 
   @Column()
@@ -16,6 +16,6 @@ export class clienteDB{
   @Column()
   telefonoCliente: string;  
 
-  @OneToMany(() => VentaDB, venta => VentaDB.cliente)
+  @OneToMany(() => VentaDB, venta => venta.idventa)
   venta: VentaDB[];
 }
