@@ -3,6 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { clienteDB } from 'src/DB/clienteDB.entity';
+import { UpdateClienteDto } from './dto/update-cliente.dto';
 
 @Injectable()
 export class ClienteService {
@@ -14,18 +15,22 @@ export class ClienteService {
   }
 
   findAll() {
-    return `This action returns all producto`;
+    return this.clienteRepository.find();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} producto`;
+    return this.clienteRepository.findOne({
+      where:{
+        idCliente:id
+      }
+    });
   }
 
-  update(id: number) {
-    return `This action updates a #${id} producto`;
+  update(id: number, cliente:UpdateClienteDto) {
+    return this.clienteRepository.update(id,cliente);
   }
 
   remove(id: number) {
-    return `This action removes a #${id} producto`;
+    return this.clienteRepository.delete({idCliente:id});
   }
 }
