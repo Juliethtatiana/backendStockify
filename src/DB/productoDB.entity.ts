@@ -16,7 +16,7 @@ export class ProductoDB{
   descripcion: string;
 
   @Column()
-  precioUnitario: string;  
+  precioUnitario: number;  
 
   @OneToMany(() => inventario_has_productoDB, inventario => inventario.producto)
   inventario: inventario_has_productoDB[];
