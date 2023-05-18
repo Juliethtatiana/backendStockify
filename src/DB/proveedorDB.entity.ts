@@ -4,7 +4,7 @@ import { ProductoDB } from './productoDB.entity';
 
 @Entity({name:'proveedor'})
 export class proveedorDB{
-  @Column()
+  @PrimaryGeneratedColumn()
   idProveedor: number;
 
   @Column()

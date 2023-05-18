@@ -5,6 +5,12 @@ import { ProductoModule } from './producto/producto.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { usuarioDB } from './DB/usuarioDB.entity';
 import { inventarioDB } from './DB/inventarioDB.entity';
+import { clienteDB } from './DB/clienteDB.entity';
+import { inventario_has_productoDB } from './DB/Inventario_has_productoDB.entity';
+import { producto_has_ventaDB } from './DB/producto_has_ventaDB.entity';
+import { ProductoDB } from './DB/productoDB.entity';
+import { proveedorDB } from './DB/proveedorDB.entity';
+import { VentaDB } from './DB/ventaDB.entity';
 
 @Module({
   imports: [
@@ -16,7 +22,8 @@ import { inventarioDB } from './DB/inventarioDB.entity';
       username: 'root',
       password: 'root',
       database: 'stockifydb',
-      entities: [usuarioDB,inventarioDB],
+      entities: [clienteDB,inventarioDB,inventario_has_productoDB,producto_has_ventaDB, producto_has_ventaDB,ProductoDB,proveedorDB,usuarioDB,VentaDB],
+      synchronize:true
     }),
     ProductoModule,
     VentaModule,

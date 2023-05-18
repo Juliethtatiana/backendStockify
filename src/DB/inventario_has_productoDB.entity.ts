@@ -2,7 +2,7 @@ import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 import { inventarioDB } from './inventarioDB.entity';
 import { ProductoDB } from './productoDB.entity';
 
-@Entity({name:'Inventario_has_proeducto'})
+@Entity({name:'inventario_has_producto'})
 export class inventario_has_productoDB{
     @PrimaryGeneratedColumn()
     idInvProd:number
