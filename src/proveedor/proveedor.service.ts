@@ -3,6 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { proveedorDB } from 'src/DB/proveedorDB.entity';
+import { UpdateProveedorDto } from './dto/update-proveedor.dto';
 
 @Injectable()
 export class ProveedorService {
@@ -25,8 +26,8 @@ export class ProveedorService {
     });
   }
 
-  update(id: number) {
-    return `This action updates a #${id} producto`;
+  update(id: number, provider: UpdateProveedorDto) {
+    return this.proveedorRespository.update({idProveedor:id},provider) ;
   }
 
   remove(id: number) {
