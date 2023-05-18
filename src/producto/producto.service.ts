@@ -16,11 +16,22 @@ export class ProductoService {
   }
 
   findAll() {
-    return `This action returns all producto`;
+    return this.productoRespository.find();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} producto`;
+    return this.productoRespository.findOne({
+      where:{
+        idproducto:id
+      }
+    });
+  }
+
+  findWithProvider(id: number) {
+    return this.productoRespository.find({
+      relations:['proveedor']
+      
+    });
   }
 
   update(id: number, updateProductoDto: UpdateProductoDto) {

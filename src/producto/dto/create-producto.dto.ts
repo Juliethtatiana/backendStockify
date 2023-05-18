@@ -1,5 +1,6 @@
 export class CreateProductoDto {
-    nombre:string
+    nombreProducto:string
     descripcion:string
     precioUnitario:number
+    proveedorIdProveedor:number
 }

@@ -18,6 +18,9 @@ export class ProductoDB{
   @Column()
   precioUnitario: number;  
 
+  @Column()
+  proveedorIdProveedor:number;
+
   @OneToMany(() => inventario_has_productoDB, inventario => inventario.producto)
   inventario: inventario_has_productoDB[];
 

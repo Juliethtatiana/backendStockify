@@ -7,6 +7,7 @@ import { proveedorDB } from 'src/DB/proveedorDB.entity';
 @Module({
   imports:[TypeOrmModule.forFeature([proveedorDB])],
   controllers: [ProveedorController],
-  providers: [ProveedorService]
+  providers: [ProveedorService],
+  exports:[ProveedorService]
 })
 export class ProveedorModule {}

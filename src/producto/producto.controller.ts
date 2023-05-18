@@ -21,6 +21,10 @@ export class ProductoController {
   findOne(@Param('id') id: string) {
     return this.productoService.findOne(+id);
   }
+  @Get('provider/:id')
+  findWithProvider(@Param('id') id: string) {
+    return this.productoService.findWithProvider(+id);
+  }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateProductoDto: UpdateProductoDto) {
