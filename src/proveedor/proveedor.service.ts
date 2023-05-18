@@ -14,11 +14,15 @@ export class ProveedorService {
   }
 
   findAll() {
-    return `This action returns all producto`;
+    return this.proveedorRespository.find();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} producto`;
+    return this.proveedorRespository.findOne({
+      where:{
+        idProveedor: id
+      }
+    });
   }
 
   update(id: number) {
@@ -26,6 +30,6 @@ export class ProveedorService {
   }
 
   remove(id: number) {
-    return `This action removes a #${id} producto`;
+    return this.proveedorRespository.delete({idProveedor:id})
   }
-}
+} 

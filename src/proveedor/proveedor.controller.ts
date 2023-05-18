@@ -1,6 +1,7 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { ProveedorService } from './proveedor.service';
 import { CreateProdveedorDto } from './dto/create-proveedor.dto';
+import { proveedorDB } from 'src/DB/proveedorDB.entity';
 
 @Controller('proveedor')
 export class ProveedorController {
@@ -12,12 +13,12 @@ export class ProveedorController {
   }
 
   @Get()
-  findAll() {
+  findAll() : Promise<proveedorDB[]> {
     return this.proveedorService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id') id: number) : Promise<proveedorDB> {
     return this.proveedorService.findOne(+id);
   }
 
