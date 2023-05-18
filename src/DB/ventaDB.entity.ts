@@ -3,28 +3,38 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne} from 'typ
 import { producto_has_ventaDB } from './producto_has_ventaDB.entity';
 import { clienteDB } from './clienteDB.entity';
 import { usuarioDB } from './usuarioDB.entity';
+import { inventarioDB } from './inventarioDB.entity';
 
 @Entity({name:'venta'})
 export class VentaDB{
   @PrimaryGeneratedColumn()
   idventa: number;
 
-  @Column()
-  nombreCliente: string;
-
-  @Column()
-  documentoCliente: number;
-
   @Column({type: 'datetime'})
   fecha: Date;
+
+  @Column()
+  valor:number;
+
+  @Column()
+  clienteIdCliente:number;
+
+  @Column()
+  vendedorIdusuario:number;
+
+  @Column()
+  inventarioIdinventario:number;
 
   @OneToMany(() => producto_has_ventaDB, venta => venta.venta)
   producto: producto_has_ventaDB[];
 
-  @ManyToOne(() =>clienteDB, cliente => cliente.venta)
+  @ManyToOne(() =>clienteDB, cliente => cliente.idCliente)
     cliente: clienteDB;
 
-  @ManyToOne(() =>usuarioDB, usuario=>usuario.venta)
+    @ManyToOne(() =>inventarioDB, inventario => inventario.idinventario)
+    inventario: clienteDB;
+
+  @ManyToOne(() =>usuarioDB, usuario=>usuario.idusuario)
     vendedor: usuarioDB;
 
 }

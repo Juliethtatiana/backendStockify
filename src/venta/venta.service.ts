@@ -1,27 +1,36 @@
-/* eslint-disable prettier/prettier */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Injectable } from '@nestjs/common';
-import { CreateVentaDto } from './dto/create-venta.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { VentaDB } from 'src/DB/ventaDB.entity';
 import { UpdateVentaDto } from './dto/update-venta.dto';
 
 @Injectable()
 export class VentaService {
-  create(createVentaDto: CreateVentaDto) {
-    return 'This action adds a new venta';
+  constructor(@InjectRepository(VentaDB) private ventaRespository : Repository<VentaDB>){}
+
+  create(venta) {
+    const newProvider = this.ventaRespository.create(venta);
+    return this.ventaRespository.save(newProvider)
   }
 
   findAll() {
-    return `This action returns all venta`;
+    return this.ventaRespository.find();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} venta`;
+    return this.ventaRespository.findOne({
+      where:{
+        idventa: id
+      }
+    });
   }
 
-  update(id: number, updateVentaDto: UpdateVentaDto) {
-    return `This action updates a #${id} venta`;
+  update(id: number, provider: UpdateVentaDto) {
+    return this.ventaRespository.update({idventa:id},provider) ;
   }
 
   remove(id: number) {
-    return `This action removes a #${id} venta`;
+    return this.ventaRespository.delete({idventa:id})
   }
-}
+} 

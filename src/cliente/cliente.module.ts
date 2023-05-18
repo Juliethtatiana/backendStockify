@@ -7,6 +7,7 @@ import { clienteDB } from 'src/DB/clienteDB.entity';
 @Module({
   imports:[TypeOrmModule.forFeature([clienteDB])],
   controllers: [ClienteController],
-  providers: [ClienteService]
+  providers: [ClienteService],
+  exports:[ClienteService]
 })
 export class ClienteModule {}

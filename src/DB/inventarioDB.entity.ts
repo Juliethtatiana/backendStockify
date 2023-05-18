@@ -9,10 +9,16 @@ export class inventarioDB{
   idinventario: number;
 
   @Column()
-  cantidad: number;
+  nombre: string;
+
+  @Column()
+  descripcion: string;
   
   @Column()
   fechaCreacion:Date;
+
+  @Column()
+  creadorIdusuario:number;
 
   @ManyToOne(() =>usuarioDB, usuario=>usuario.idusuario)
   creador: usuarioDB;

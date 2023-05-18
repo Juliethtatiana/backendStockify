@@ -5,8 +5,20 @@ import { ProductoDB } from './productoDB.entity';
 @Entity({name:'inventario_has_producto'})
 export class inventario_has_productoDB{
     @PrimaryGeneratedColumn()
-    idInvProd:number
-  
+    idInvProd:number;
+
+    @Column()
+    cantidad: number;
+    
+    @Column()
+    updated:Date;
+
+    @Column()
+    inventarioIdinventario:number;
+
+    @Column()
+    productoIdproducto:number;
+
     @ManyToOne(() =>inventarioDB, inventario=>inventario.idinventario)
     inventario: inventarioDB;
 

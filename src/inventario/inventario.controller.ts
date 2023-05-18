@@ -22,6 +22,11 @@ export class InventarioController {
     return this.inventarioService.findOne(+id);
   }
 
+  @Get('client/:id')
+  findWithProvider(@Param('id') id: string) {
+    return this.inventarioService.findWithUser(+id);
+  }
+
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateInventarioDto: UpdateInventarioDto) {
     return this.inventarioService.update(+id, updateInventarioDto);

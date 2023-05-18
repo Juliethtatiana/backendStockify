@@ -8,6 +8,7 @@ import { ProveedorModule } from 'src/proveedor/proveedor.module';
 @Module({
   imports:[TypeOrmModule.forFeature([ProductoDB]),ProveedorModule],
   controllers: [ProductoController],
-  providers: [ProductoService]
+  providers: [ProductoService],
+  exports:[ProductoService]
 })
 export class ProductoModule {}
