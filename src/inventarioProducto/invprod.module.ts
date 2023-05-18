@@ -1,14 +1,13 @@
 import { Module } from '@nestjs/common';
 import { InvProdService } from './invprod.service';
-import { InvprodController } from './invprod.controller';
-import { TypeOrmModule} from '@nestjs/typeorm'
-import { inventario_has_productoDB } from 'src/DB/inventario_has_productoDB.entity';
-import { ProductoModule } from 'src/producto/producto.module';
-import { InventarioModule } from 'src/inventario/inventario.module';
+import { InvProdController } from './invprod.controller';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { producto_has_ventaDB } from 'src/DB/producto_has_ventaDB.entity';
+import { inventario_has_productoDB } from 'src/DB/Inventario_has_productoDB.entity';
 
 @Module({
-  imports:[TypeOrmModule.forFeature([inventario_has_productoDB]), ProductoModule,InventarioModule],
-  controllers: [InvprodController],
+  imports:[TypeOrmModule.forFeature([inventario_has_productoDB])],
+  controllers: [InvProdController],
   providers: [InvProdService]
 })
-export class InvprodModule {}
+export class InvProdModule {}

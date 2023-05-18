@@ -2,13 +2,12 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { UpdateInvprodDto } from './dto/update-invprod.dto';
+import { UpdateVentaProdDto } from './dto/update-ventaprod.dto';
 import { producto_has_ventaDB } from 'src/DB/producto_has_ventaDB.entity';
-import { inventario_has_productoDB } from 'src/DB/Inventario_has_productoDB.entity';
 
 @Injectable()
-export class InvProdService {
-  constructor(@InjectRepository(inventario_has_productoDB) private ventaRespository : Repository<inventario_has_productoDB>){}
+export class VentaProdService {
+  constructor(@InjectRepository(producto_has_ventaDB) private ventaRespository : Repository<producto_has_ventaDB>){}
 
   create(venta) {
     const newProvider = this.ventaRespository.create(venta);
@@ -22,16 +21,16 @@ export class InvProdService {
   findOne(id: number) {
     return this.ventaRespository.findOne({
       where:{
-        idInvProd: id
+        idProdVent: id
       }
     });
   }
 
-  update(id: number, provider: UpdateInvprodDto) {
+  update(id: number, provider: UpdateVentaProdDto) {
     //return this.ventaRespository.update({idProdVent:id},provider) ;
   }
 
   remove(id: number) {
-    return this.ventaRespository.delete({idInvProd:id})
+    return this.ventaRespository.delete({idProdVent:id})
   }
 } 

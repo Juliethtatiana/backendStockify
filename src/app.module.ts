@@ -14,7 +14,8 @@ import { VentaDB } from './DB/ventaDB.entity';
 import {ProveedorModule} from './proveedor/proveedor.module'
 import { ClienteModule } from './cliente/cliente.module';
 import { UsuarioModule } from './usuario/usuario.module';
-import { InvprodModule } from './inventarioProducto/invprod.module';
+import { InvProdModule } from './inventarioProducto/invprod.module';
+import { VentaProdModule } from './ventaProd/ventaprod.module';
 
 @Module({
   imports: [
@@ -34,7 +35,8 @@ import { InvprodModule } from './inventarioProducto/invprod.module';
     ProveedorModule,
     ClienteModule,
     UsuarioModule,
-    InvprodModule
+    InvProdModule,
+    VentaProdModule
   ],
   controllers: [],
   providers: [],

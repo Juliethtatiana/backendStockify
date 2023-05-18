@@ -1,14 +1,14 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { InvProdService } from './invprod.service';
-import { CreateInvprodDto } from './dto/create-invprod.dto';
-import { UpdateInvprodDto } from './dto/update-invprod.dto';
+import { VentaProdService } from './ventaprod.service';
+import { CreateVentaProdDto } from './dto/create-ventaprod.dto';
+import { UpdateVentaProdDto } from './dto/update-ventaprod.dto';
 
-@Controller('invprod')
-export class InvProdController {
-  constructor(private readonly ventaService: InvProdService) {}
+@Controller('ventaprod')
+export class VentaProdController {
+  constructor(private readonly ventaService: VentaProdService) {}
 
   @Post()
-  create(@Body() createVentaDto: CreateInvprodDto) {
+  create(@Body() createVentaDto: CreateVentaProdDto) {
     return this.ventaService.create(createVentaDto);
   }
 
@@ -23,7 +23,7 @@ export class InvProdController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateVentaDto: UpdateInvprodDto) {
+  update(@Param('id') id: string, @Body() updateVentaDto: UpdateVentaProdDto) {
     return this.ventaService.update(+id, updateVentaDto);
   }
 
