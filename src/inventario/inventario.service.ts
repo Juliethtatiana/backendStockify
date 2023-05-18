@@ -15,8 +15,10 @@ export class InventarioService {
   }
 
   findAll() {
-    return `This action returns all inventario`;
+    return this.inventarioRespository.find();
   }
+
+  
 
   findOne(id: number) {
     return `This action returns a #${id} inventario`;
@@ -26,7 +28,16 @@ export class InventarioService {
     return `This action updates a #${id} inventario`;
   }
 
+//obtener el inventario  con los datos del usuario que lo creo
   findWithUser(id: number) {
+    return this.inventarioRespository.findOne({
+      where:{idinventario:id},
+      relations:['creador']
+      
+    });
+  }
+//obtener todos los inevntarios con los datos del usuario
+  findAllWithUser() {
     return this.inventarioRespository.find({
       relations:['creador']
       

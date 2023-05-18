@@ -14,15 +14,15 @@ export class InventarioController {
 
   @Get()
   findAll() {
-    return this.inventarioService.findAll();
+    return this.inventarioService.findAllWithUser();
   }
 
-  @Get(':id')
+ /* @Get(':id')
   findOne(@Param('id') id: string) {
     return this.inventarioService.findOne(+id);
-  }
+  }*/
 
-  @Get('client/:id')
+  @Get(':id')
   findWithProvider(@Param('id') id: string) {
     return this.inventarioService.findWithUser(+id);
   }
