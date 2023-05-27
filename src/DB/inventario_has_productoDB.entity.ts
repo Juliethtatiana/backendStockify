@@ -8,7 +8,10 @@ export class inventario_has_productoDB{
     idInvProd:number;
 
     @Column()
-    cantidad: number;
+    cantidad_inv: number;
+
+    @Column()
+    cantidad_vend:number
     
     @Column()
     updated:Date;

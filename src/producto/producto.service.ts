@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Injectable } from '@nestjs/common';
+import { HttpStatus, Injectable } from '@nestjs/common';
 import { CreateProductoDto } from './dto/create-producto.dto';
 import { UpdateProductoDto } from './dto/update-producto.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -10,9 +10,18 @@ import { Repository } from 'typeorm';
 export class ProductoService {
   constructor(@InjectRepository(ProductoDB) private productoRespository : Repository<ProductoDB>){}
 
-  createProduct(producto) {
+  createProduct(producto,response) {
     const newProduct = this.productoRespository.create(producto);
-    return this.productoRespository.save(newProduct)
+    if(this.productoRespository.save(newProduct)){
+      return response.status(HttpStatus.CREATED).json({
+        statusCode: 200,
+        message: 'producto creado exitosamente'
+      });
+    }
+    return response.status(HttpStatus.BAD_REQUEST).json({
+      statusCode: 500,
+      message: 'producto creado exitosamente'
+    });
   }
 
   findAll() {

@@ -1,37 +1,49 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Injectable } from '@nestjs/common';
+import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { UpdateInvprodDto } from './dto/update-invprod.dto';
 import { producto_has_ventaDB } from 'src/DB/producto_has_ventaDB.entity';
 import { inventario_has_productoDB } from 'src/DB/Inventario_has_productoDB.entity';
+import {CreateInvprodDto} from './dto/create-invprod.dto'
 
 @Injectable()
 export class InvProdService {
-  constructor(@InjectRepository(inventario_has_productoDB) private ventaRespository : Repository<inventario_has_productoDB>){}
+  constructor(@InjectRepository(inventario_has_productoDB) private invProdRepository : Repository<inventario_has_productoDB>){}
 
-  create(venta) {
-    const newProvider = this.ventaRespository.create(venta);
-    return this.ventaRespository.save(newProvider)
+  async create(producto: CreateInvprodDto) {
+    const prodFound= await this.invProdRepository.findOne({
+      where: {
+        productoIdproducto:producto.productoIdproducto
+      }
+    })  
+    
+    if(prodFound){
+      console.log(prodFound)
+      return new HttpException('producto ya existe en el inventario', HttpStatus.CONFLICT)
+    }
+    const newProvider = this.invProdRepository.create(producto);
+    return this.invProdRepository.save(newProvider)
   }
 
   findAll() {
-    return this.ventaRespository.find();
+    return this.invProdRepository.find();
   }
 
-  findOne(id: number) {
-    return this.ventaRespository.findOne({
+  findProducts(id: number) {
+    return this.invProdRepository.find({
       where:{
-        idInvProd: id
-      }
+        inventarioIdinventario: id
+      },
+      relations:['producto']
     });
   }
 
   update(id: number, provider: UpdateInvprodDto) {
-    //return this.ventaRespository.update({idProdVent:id},provider) ;
+    //return this.invProdRepository.update({idProdVent:id},provider) ;
   }
 
   remove(id: number) {
-    return this.ventaRespository.delete({idInvProd:id})
+    return this.invProdRepository.delete({idInvProd:id})
   }
 } 

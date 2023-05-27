@@ -5,30 +5,30 @@ import { UpdateInvprodDto } from './dto/update-invprod.dto';
 
 @Controller('invprod')
 export class InvProdController {
-  constructor(private readonly ventaService: InvProdService) {}
+  constructor(private readonly invProdService: InvProdService) {}
 
   @Post()
-  create(@Body() createVentaDto: CreateInvprodDto) {
-    return this.ventaService.create(createVentaDto);
+  create(@Body() createInvProdDto: CreateInvprodDto) {
+    return this.invProdService.create(createInvProdDto);
   }
 
   @Get()
   findAll() {
-    return this.ventaService.findAll();
+    return this.invProdService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.ventaService.findOne(+id);
+  findProducts(@Param('id') id: string) {
+    return this.invProdService.findProducts(+id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateVentaDto: UpdateInvprodDto) {
-    return this.ventaService.update(+id, updateVentaDto);
+    return this.invProdService.update(+id, updateVentaDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.ventaService.remove(+id);
+    return this.invProdService.remove(+id);
   }
 }

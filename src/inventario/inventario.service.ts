@@ -21,7 +21,9 @@ export class InventarioService {
   
 
   findOne(id: number) {
-    return `This action returns a #${id} inventario`;
+    return this.inventarioRespository.findOne({
+      where:{idinventario:id}
+    });;
   }
 
   update(id: number, updateInventarioDto: UpdateInventarioDto) {

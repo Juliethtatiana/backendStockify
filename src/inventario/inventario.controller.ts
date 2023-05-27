@@ -22,9 +22,14 @@ export class InventarioController {
     return this.inventarioService.findOne(+id);
   }*/
 
-  @Get(':id')
+  @Get('user/:id')
   findWithProvider(@Param('id') id: string) {
     return this.inventarioService.findWithUser(+id);
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.inventarioService.findOne(+id);
   }
 
   @Patch(':id')
