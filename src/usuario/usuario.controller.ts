@@ -1,8 +1,13 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe, Res } from '@nestjs/common';
 import { UsuarioService } from './usuario.service';
 import { CreateUsuarioDto } from './dto/create-usuario.dto';
 import { usuarioDB } from 'src/DB/usuarioDB.entity';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto';
+
+type user={
+  username:string,
+  password:string
+}
 
 @Controller('usuario')
 export class UsuarioController {
@@ -16,6 +21,11 @@ export class UsuarioController {
   @Get()
   findAll() : Promise<usuarioDB[]> {
     return this.usuarioService.findAll();
+  }
+
+  @Post('auth/signin')
+  signin(@Res() response,@Body() credentials:user){
+    return this.usuarioService.signin(credentials, response)
   }
 
   @Get(':id')

@@ -1,9 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Injectable } from '@nestjs/common';
+import { HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { usuarioDB } from 'src/DB/usuarioDB.entity';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto';
+
+type user={
+  username:string,
+  password:string
+}
 
 @Injectable()
 export class UsuarioService {
@@ -32,5 +37,35 @@ export class UsuarioService {
 
   remove(id: number) {
     return this.usuarioRespository.delete({idusuario:id})
+  }
+
+  signin(credentials:user,response){
+    this.usuarioRespository.findOne({
+      where:{
+        userName:credentials.username,
+        password:credentials.password
+      }
+    }).then((res)=>{
+      if(res){
+        
+        return response.status(HttpStatus.CREATED).json({
+          statusCode: 200,
+          message:"usuario encontrado",
+          user: res
+        });
+      }else{
+        
+        return response.status(HttpStatus.BAD_REQUEST).json({
+          statusCode: 403,
+          message: 'usuario o contraseña incorrecto'
+        });
+      }
+      
+    }).catch((err)=>{
+      return response.status(HttpStatus.BAD_REQUEST).json({
+        statusCode: 500,
+        message: 'Error de servidor'
+      });
+    })
   }
 } 
