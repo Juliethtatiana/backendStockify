@@ -14,7 +14,6 @@ export class VentaProdService {
     const newVentaProd = this.ventaRespository.create(ventaprod);
     const saved= await this.ventaRespository.save(newVentaProd)
     if(saved){
-      console.log(saved)
       return response.status(HttpStatus.CREATED).json({
         statusCode: 200,
         message: 'ventaprod creada exitosamente'

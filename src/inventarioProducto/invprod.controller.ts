@@ -22,6 +22,13 @@ export class InvProdController {
     return this.invProdService.findProducts(+id);
   }
 
+  @Get('register/:idInv/:idProd')
+  findRegister(@Param('idInv') idInv: string, @Param('idProd') idProd: string) {
+    return this.invProdService.findRegister(Number(idInv),Number(idProd));
+  }
+
+
+
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateVentaDto: UpdateInvprodDto) {
     return this.invProdService.update(+id, updateVentaDto);

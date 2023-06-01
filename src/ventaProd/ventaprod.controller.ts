@@ -9,7 +9,7 @@ export class VentaProdController {
 
   @Post()
   create(@Res() response, @Body() createVentaDto: CreateVentaProdDto) {
-    console.log(createVentaDto)
+
     return this.ventaService.create(createVentaDto, response);
   }
 

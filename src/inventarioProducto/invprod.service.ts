@@ -40,7 +40,17 @@ export class InvProdService {
   }
 
   update(id: number, provider: UpdateInvprodDto) {
-    //return this.invProdRepository.update({idProdVent:id},provider) ;
+    return this.invProdRepository.update(id,provider) ;
+  }
+  findRegister(idInv:number, idProd:number){
+    const register= this.invProdRepository.findOne({
+      where:{
+        inventarioIdinventario: idInv,
+        productoIdproducto:idProd
+      }
+    });
+    console.log(register)
+    return register
   }
 
   remove(id: number) {

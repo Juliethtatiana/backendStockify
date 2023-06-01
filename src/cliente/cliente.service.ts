@@ -11,7 +11,6 @@ export class ClienteService {
   constructor(@InjectRepository(clienteDB) private clienteRepository : Repository<clienteDB>){}
 
   async create(cliente:CreateClienteDto,response) {
-    console.log(cliente)
     const clientFound= await this.clienteRepository.findOne({
       where: {
         nombreCliente:cliente.nombreCliente
