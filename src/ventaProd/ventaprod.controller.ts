@@ -19,8 +19,8 @@ export class VentaProdController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.ventaService.findOne(+id);
+  findbySell(@Param('id') id: string) {
+    return this.ventaService.findbySell(+id);
   }
 
   @Patch(':id')

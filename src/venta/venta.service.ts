@@ -34,7 +34,19 @@ export class VentaService {
     return this.ventaRespository.findOne({
       where:{
         idventa: id
-      }
+      },
+      relations:
+      ['cliente'],
+    });
+  }
+  findbyinventory(id:number){
+    return this.ventaRespository.find({
+      where:{
+        inventarioIdinventario: id
+      },
+      relations:
+        ['cliente'],
+      
     });
   }
 

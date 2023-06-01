@@ -37,6 +37,15 @@ export class VentaProdService {
       }
     });
   }
+  findbySell(id:number){
+    return this.ventaRespository.find({
+      where:{
+        ventaIdventa: id
+      },
+      relations:['producto']
+    })
+
+  }
 
   update(id: number, provider: UpdateVentaProdDto) {
     //return this.ventaRespository.update({idProdVent:id},provider) ;

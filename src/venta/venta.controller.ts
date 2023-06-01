@@ -21,6 +21,10 @@ export class VentaController {
   findOne(@Param('id') id: string) {
     return this.ventaService.findOne(+id);
   }
+  @Get('all/:iduser')
+  findbyinventory(@Param('iduser') id: string) {
+    return this.ventaService.findbyinventory(+id);
+  }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateVentaDto: UpdateVentaDto) {

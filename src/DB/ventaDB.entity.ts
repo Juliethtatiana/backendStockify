@@ -34,4 +34,6 @@ export class VentaDB{
   @ManyToOne(() =>usuarioDB, usuario=>usuario.idusuario)
     vendedor: usuarioDB;
 
+  @ManyToOne(() =>inventarioDB, inventario=>inventario.idinventario)
+  inventario: inventarioDB;
 }
