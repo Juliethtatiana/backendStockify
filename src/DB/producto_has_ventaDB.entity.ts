@@ -7,9 +7,18 @@ export class producto_has_ventaDB{
     @PrimaryGeneratedColumn()
     idProdVent:number
 
-    @ManyToOne(() =>ProductoDB, producto=>producto.venta)
+    @Column()
+    cantidad:number;
+
+    @Column()
+    ventaIdventa:number;
+
+    @Column()
+    productoIdproducto:number;
+
+    @ManyToOne(() =>ProductoDB, producto=>producto.idproducto)
     producto: ProductoDB;
 
-    @ManyToOne(() =>VentaDB, venta=>venta.producto)
+    @ManyToOne(() =>VentaDB, venta=>venta.idventa)
     venta: VentaDB;
 }

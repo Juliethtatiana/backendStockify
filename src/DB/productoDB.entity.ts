@@ -24,7 +24,7 @@ export class ProductoDB{
   @OneToMany(() => inventario_has_productoDB, inventario => inventario.producto)
   inventario: inventario_has_productoDB[];
 
-  @OneToMany(() => producto_has_ventaDB, prodVent => prodVent.idProdVent)
+  @OneToMany(() => producto_has_ventaDB, venta => venta.producto)
   venta: producto_has_ventaDB[];
 
   @ManyToOne(() =>proveedorDB, proveedor=>proveedor.idProveedor)

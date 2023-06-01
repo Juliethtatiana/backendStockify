@@ -20,7 +20,7 @@ export class ProductoService {
     }
     return response.status(HttpStatus.BAD_REQUEST).json({
       statusCode: 500,
-      message: 'producto creado exitosamente'
+      message: 'fallo al crear producto'
     });
   }
 

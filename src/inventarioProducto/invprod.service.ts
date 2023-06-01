@@ -14,12 +14,12 @@ export class InvProdService {
   async create(producto: CreateInvprodDto) {
     const prodFound= await this.invProdRepository.findOne({
       where: {
-        productoIdproducto:producto.productoIdproducto
+        productoIdproducto:producto.productoIdproducto,
+        inventarioIdinventario:producto.inventarioIdinventario
       }
     })  
     
     if(prodFound){
-      console.log(prodFound)
       return new HttpException('producto ya existe en el inventario', HttpStatus.CONFLICT)
     }
     const newProvider = this.invProdRepository.create(producto);

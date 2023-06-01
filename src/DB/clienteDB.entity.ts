@@ -14,7 +14,7 @@ export class clienteDB{
   direccionCliente: string;
 
   @Column()
-  telefonoCliente: string;  
+  telefonoCliente: number;  
 
   @OneToMany(() => VentaDB, venta => venta.idventa)
   venta: VentaDB[];

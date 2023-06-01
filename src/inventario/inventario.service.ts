@@ -33,7 +33,7 @@ export class InventarioService {
 //obtener el inventario  con los datos del usuario que lo creo
   findWithUser(id: number) {
     return this.inventarioRespository.findOne({
-      where:{idinventario:id},
+      where:{creadorIdusuario:id},
       relations:['creador']
       
     });

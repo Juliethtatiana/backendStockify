@@ -1,17 +1,29 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Injectable } from '@nestjs/common';
+import { HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { UpdateVentaProdDto } from './dto/update-ventaprod.dto';
 import { producto_has_ventaDB } from 'src/DB/producto_has_ventaDB.entity';
+import { CreateVentaProdDto } from './dto/create-ventaprod.dto';
 
 @Injectable()
 export class VentaProdService {
   constructor(@InjectRepository(producto_has_ventaDB) private ventaRespository : Repository<producto_has_ventaDB>){}
 
-  create(venta) {
-    const newProvider = this.ventaRespository.create(venta);
-    return this.ventaRespository.save(newProvider)
+  async create(ventaprod:CreateVentaProdDto, response) {
+    const newVentaProd = this.ventaRespository.create(ventaprod);
+    const saved= await this.ventaRespository.save(newVentaProd)
+    if(saved){
+      console.log(saved)
+      return response.status(HttpStatus.CREATED).json({
+        statusCode: 200,
+        message: 'ventaprod creada exitosamente'
+      });
+    }
+    return response.status(HttpStatus.BAD_REQUEST).json({
+      statusCode: 500,
+      message: 'fallo al crear ventaprod'
+    });
   }
 
   findAll() {

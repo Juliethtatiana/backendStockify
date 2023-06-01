@@ -25,14 +25,11 @@ export class VentaDB{
   @Column()
   inventarioIdinventario:number;
 
-  @OneToMany(() => producto_has_ventaDB, venta => venta.venta)
+  @OneToMany(() => producto_has_ventaDB, producto => producto.venta)
   producto: producto_has_ventaDB[];
 
   @ManyToOne(() =>clienteDB, cliente => cliente.idCliente)
     cliente: clienteDB;
-
-    @ManyToOne(() =>inventarioDB, inventario => inventario.idinventario)
-    inventario: clienteDB;
 
   @ManyToOne(() =>usuarioDB, usuario=>usuario.idusuario)
     vendedor: usuarioDB;
