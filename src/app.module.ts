@@ -11,11 +11,14 @@ import { producto_has_ventaDB } from './DB/producto_has_ventaDB.entity';
 import { ProductoDB } from './DB/productoDB.entity';
 import { proveedorDB } from './DB/proveedorDB.entity';
 import { VentaDB } from './DB/ventaDB.entity';
+import { consec_fact } from './DB/consec_factDB.entity';
 import {ProveedorModule} from './proveedor/proveedor.module'
 import { ClienteModule } from './cliente/cliente.module';
 import { UsuarioModule } from './usuario/usuario.module';
 import { InvProdModule } from './inventarioProducto/invprod.module';
 import { VentaProdModule } from './ventaProd/ventaprod.module';
+import {ConsecutivoModule} from './consecutivos/consecutivos.module';
+
 
 @Module({
   imports: [
@@ -27,7 +30,7 @@ import { VentaProdModule } from './ventaProd/ventaprod.module';
       username: 'root',
       password: 'root',
       database: 'stockifydb',
-      entities: [clienteDB,inventarioDB,inventario_has_productoDB,producto_has_ventaDB, producto_has_ventaDB,ProductoDB,proveedorDB,usuarioDB,VentaDB],
+      entities: [clienteDB,inventarioDB,inventario_has_productoDB,producto_has_ventaDB, producto_has_ventaDB,ProductoDB,proveedorDB,usuarioDB,VentaDB, consec_fact],
       synchronize:true
     }),
     ProductoModule,
@@ -36,7 +39,8 @@ import { VentaProdModule } from './ventaProd/ventaprod.module';
     ClienteModule,
     UsuarioModule,
     InvProdModule,
-    VentaProdModule
+    VentaProdModule,
+    ConsecutivoModule
   ],
   controllers: [],
   providers: [],
